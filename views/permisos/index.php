@@ -43,10 +43,16 @@
 
     </form>
 </div>
-<!-- <div id="contenedorContraseña" style="display: none;">
+<div id="contenedorContraseña">
     <h2>Cambiar Contraseña</h2>
     <form id="formularioContraseña">
         <div class="row mb-3">
+            <label for="usu_nombre">Ingrese un usuario</label>
+            <input type="text" name="usu_nombre" id="usu_nombre" class="form-control" required>
+
+            <label for="usu_catalogo">Catálogo</label>
+            <input type="number" name="usu_catalogo" id="usu_catalogo" class="form-control" required>
+
             <div class="col">
                 <label for="usu_password">Nueva Contraseña:</label>
                 <input type="password" id="usu_password" name="usu_password" class="form-control" required>
@@ -56,10 +62,10 @@
                 <input type="password" id="usu_confirm_password" name="usu_confirm_password" class="form-control" required>
             </div>
         </div>
-        <button type="submit" form="formularioContraseña" class="btn btn-primary">Cambiar Contraseña</button>
+        <button type="button" id="btnModificarContraseña" class="btn btn-primary">Cambiar Contraseña</button>
         <button type="button" id="btnCancelarContraseña" class="btn btn-secondary">Cancelar</button>
     </form>
-</div> -->
+</div>
 
 
 <div class="row justify-content-center">

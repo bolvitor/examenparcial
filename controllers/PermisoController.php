@@ -72,6 +72,58 @@ public static function buscarRol(){
         }
     }
 
+    public static function modificarContraseñaAPI()
+    {
+        try {
+            $usu_id = $_POST["usu_id"];
+            $nombre = $_POST["usu_nombre"];
+            $catalogo = $_POST["usu_catalogo"];
+            $password = $_POST["usu_password"];
+            $confirm_password = $_POST["usu_confirm_password"];
+    
+            // Validar si las contraseñas coinciden
+            if (!empty($password) && $password !== $confirm_password) {
+                echo json_encode([
+                    'mensaje' => 'Las contraseñas no coinciden',
+                    'codigo' => 0
+                ]);
+                return;
+            }
+    
+            $usuario = new Usuario([
+                'usu_id' => $usu_id,
+                'usu_nombre' => $nombre,
+                'usu_catalogo' => $catalogo,
+            ]);
+    
+            if (!empty($password)) {
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $usuario->usu_password = $hashed_password;
+            }
+    
+            $resultado = $usuario->actualizar();
+    
+            if ($resultado['resultado'] == 1) {
+                echo json_encode([
+                    'mensaje' => 'Registro modificado correctamente',
+                    'codigo' => 1
+                ]);
+            } else {
+                echo json_encode([
+                    'mensaje' => 'Ocurrió un error',
+                    'codigo' => 0
+                ]);
+            }
+        } catch (Exception $e) {
+            echo json_encode([
+                'detalle' => $e->getMessage(),
+                'mensaje' => 'Ocurrió un error',
+                'codigo' => 0
+            ]);
+        }
+    }
+    
+
     public static function modificarAPI()
     {
         try {

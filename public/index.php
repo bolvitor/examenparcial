@@ -15,6 +15,7 @@ $router->get('/', [AppController::class,'index']);
 
 $router->get('/usuarios', [UsuarioController::class,'index'] );
 $router->post('/API/usuarios/guardar', [UsuarioController::class,'guardarAPI'] );
+$router->post('/API/permisos/modificarContraseña', [UsuarioController::class,'modificarcontraseñaAPI'] );
 
 $router->get('/permisos', [PermisoController::class,'index'] );
 $router->post('/API/permisos/guardar', [PermisoController::class,'guardarAPI'] );
@@ -29,5 +30,8 @@ $router->get('/API/usuarios/estadisticaUsuarios', [UsuarioController::class,'det
 
 $router->get('/permisos/estadistica', [UsuarioController::class,'estadisticaPermisos']);
 $router->get('/API/permisos/estadisticaPermisos', [UsuarioController::class,'detallePermisosAPI']);
+
+$router->get('/modificarusuario', [PermisoController::class,'index'] );
+
 
 $router->comprobarRutas();

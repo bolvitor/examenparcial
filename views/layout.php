@@ -42,10 +42,10 @@
                                 <a class="dropdown-item nav-link text-white " href="/examenparcial/permisos"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>ADMINISTRADOR</a>
                             </li>
                             <li>
-                                <a class="dropdown-item nav-link text-white " href="/examenparcial/usuarios/estadistica"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>UsuariosActivos</a>
+                                <a class="dropdown-item nav-link text-white " href="/examenparcial/usuarios/estadistica"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>USUARIO</a>
                             </li>
                             <li>
-                                <a class="dropdown-item nav-link text-white " href="/examenparcial/permisos/estadistica"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>RoleUsuarios</a>
+                                <a class="dropdown-item nav-link text-white " href="/examenparcial/permisos/estadistica"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>ADMINISTRADOR</a>
                             </li>
                         </ul>
                     </div>
