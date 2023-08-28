@@ -10,11 +10,11 @@ const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
 const btnCancelar = document.getElementById('btnCancelar');
 
+
 btnModificar.disabled = true
 btnModificar.parentElement.style.display = 'none'
 btnCancelar.disabled = true
 btnCancelar.parentElement.style.display = 'none'
-
 
 let contador = 1;
 const datatable = new Datatable('#tablaPermisos', {
@@ -40,7 +40,7 @@ const datatable = new Datatable('#tablaPermisos', {
             searchable: false,
             orderable: false,
             render: (data, type, row, meta) => {
-                return `<button class="btn btn-primary btn-cambiar-contrasena" data-id="${data}" data-usuario="${row['permiso_usuario']}">Cambiar Contraseña</button>`;
+                return `<button class="btn btn-primary btn-cambiar-contrasena" data-id="${data}" data-usuario="${row['usu_nombre']}"data-usuario="${row['usu_catalogo']}">Cambiar Contraseña</button>`;
             }
         },
         
@@ -74,7 +74,6 @@ const datatable = new Datatable('#tablaPermisos', {
             render : (data, type, row, meta) => `<button class="btn btn-danger" data-id='${data}' >Eliminar</button>`
         },
        
-
     ]
 })
 
@@ -223,6 +222,9 @@ const modificar = async () => {
     }
 }
     
+
+
+
 const eliminar = async (e) => {
     const button = e.target;
     const id = button.dataset.id
@@ -405,5 +407,98 @@ datatable.on('click','.btn-warning', traeDatos )
 datatable.on('click','.btn-danger', eliminar )
 datatable.on('click','.btn-info', activar )
 datatable.on('click','.btn-success', desactivar )
+
+btnModificar.addEventListener('click', modificar)
+btnCancelar.addEventListener('click', cancelarAccion)
+
+
+
+
+const formularioContraseña = document.getElementById('formularioContraseña');
+const btnCancelarContraseña = document.getElementById('btnCancelarContraseña');
+const btnmodificarContraseña = document.getElementById('btnModificarContraseña');
+const contenedorContraseña = document.getElementById('contenedorContraseña');
+const formularioCambioContraseña = formularioContraseña.querySelector('form'); 
+
+contenedorContraseña.style.display = 'none';
+
+
+const mostrarContenedor = (e) => {
+    contenedorContraseña.style.display = 'block';
+
+    const button = e.target;
+    const id = button.dataset.id;
+    const usuario = button.dataset.usuario;
+
+    const dataset = {
+        id,
+        usuario
+    };
+
+    colocarDatosContraseña(dataset);
+};
+
+const colocarDatosContraseña = (dataset) => {
+    formularioCambioContraseña.usu_nombre.value = dataset.usuario;
+    formularioCambioContraseña.usu_id.value = dataset.id;
+};
+
+
+const ocultarContenedor = () => {
+    contenedorContraseña.style.display = 'none';
+    formularioCambioContraseña.reset();
+};
+
+const modificarContraseña = async () => {
+    if(!validarFormulario(formularioContraseña)){
+        alert('Debe llenar todos los campos');
+        return 
+    }
+
+    const body = new FormData(formularioContraseña)
+    const url = '/examenparcial/API/usuarios/modificarContraseña';
+    const config = {
+        method : 'POST',
+        body
+    }
+
+    try {
+        const respuesta = await fetch(url, config)
+        const data = await respuesta.json();
+        
+        const {codigo, mensaje,detalle} = data;
+        let icon = 'info'
+        switch (codigo) {
+            case 1:
+                formularioContraseña.reset();
+                icon = 'success'
+                buscar();
+                cancelarAccion();
+                break;
+        
+            case 0:
+                icon = 'error'
+                console.log(detalle)
+                break;
+        
+            default:
+                break;
+        }
+
+        Toast.fire({
+            icon,
+            text: mensaje
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+datatable.on('click', '.btn-cambiar-contrasena', mostrarContenedor);
+btnCancelarContraseña.addEventListener('click', ocultarContenedor);
+btnmodificarContraseña.addEventListener('click', modificarContraseña);
+
 
 

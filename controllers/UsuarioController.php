@@ -60,6 +60,8 @@ class UsuarioController {
         }
     }
 
+   
+
 
     public static function estadisticaUsuarios(Router $router){
         $router->render('usuarios/estadistica', []);
