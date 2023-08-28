@@ -221,9 +221,6 @@ const modificar = async () => {
         console.log(error);
     }
 }
-    
-
-
 
 const eliminar = async (e) => {
     const button = e.target;
@@ -380,7 +377,6 @@ const colocarDatos = (dataset) => {
     btnModificar.parentElement.style.display = '';
     btnCancelar.disabled = false
     btnCancelar.parentElement.style.display = '';
-
   
 }
 
@@ -395,7 +391,6 @@ const cancelarAccion = () => {
     btnCancelar.parentElement.style.display = 'none'
    
 }
-
 
 buscar();
 
