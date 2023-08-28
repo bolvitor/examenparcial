@@ -4,13 +4,14 @@ namespace Model;
 
 class usuario extends ActiveRecord{
     public static $tabla = 'usuario';
-    public static $columnasDB = ['usu_nombre', 'usu_catalogo','usu_password','usu_situacion'];
+    public static $columnasDB = ['usu_nombre', 'usu_catalogo', 'usu_password', 'usu_estado','usu_situacion'];
     public static $idTabla = 'usu_id';
 
     public $usu_id;
     public $usu_nombre;
     public $usu_catalogo;
     public $usu_password;
+    public $usu_estado;
     public $usu_situacion;
 
     public function __construct($args =[])
@@ -19,7 +20,8 @@ class usuario extends ActiveRecord{
         $this->usu_nombre = $args['usu_nombre'] ?? '';
         $this->usu_catalogo = $args['usu_catalogo'] ?? '';
         $this->usu_password = $args['usu_password'] ?? '';
-        $this->usu_situacion = $args['usu_situacion'] ?? '0';
+        $this->usu_estado = $args['usu_estado'] ?? 'PENDIENTE';
+        $this->usu_situacion = $args['usu_situacion'] ?? '1';
     }
 
 }

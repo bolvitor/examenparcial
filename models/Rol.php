@@ -1,8 +1,7 @@
 <?php
 
 namespace Model;
-
-class rol extends ActiveRecord{
+class Rol extends ActiveRecord{
     public static $tabla = 'rol';
     public static $columnasDB = ['rol_nombre', 'rol_nombre_ct','rol_situacion'];
     public static $idTabla = 'rol_id';
